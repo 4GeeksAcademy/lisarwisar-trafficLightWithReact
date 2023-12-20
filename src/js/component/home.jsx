@@ -1,26 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
-const Home = () => {
+const TrafficLight = () => {
+	const [redLightState, setRedLightState] = useState("");
+	const [yellowLightState, setYellowLightState] = useState("");
+	const [greenLightState, setGreenLightState] = useState("");
+
 	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="container">
+			<div className="row m-auto justify-content-center">
+				<div className="bg-black trafficLightPost">""</div>
+			</div>
+			<div className="bg-black rounded m-auto justify-content-center row align-middle trafficLightBackground">
+				<div className="rounded-circle bg-danger trafficLight {redLightState}" onClick={() => {
+					setRedLightState("lightSelected");
+					setYellowLightState("");
+					setGreenLightState("");
+				}}></div>
+				<div className="rounded-circle bg-warning trafficLight {yellowLightState}" onClick={() => {
+					setRedLightState("");
+					setYellowLightState("lightSelected");
+					setGreenLightState("");
+				}}></div>
+				<div className="rounded-circle bg-success trafficLight {greenLightState}" onClick={() => {
+					setRedLightState("");
+					setYellowLightState("");
+					setGreenLightState("lightSelected");
+				}}></div>
+			</div>
 		</div>
 	);
 };
 
-export default Home;
+export default TrafficLight;
