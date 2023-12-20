@@ -3,9 +3,13 @@ import React, { useState } from "react";
 
 //create your first component
 const TrafficLight = () => {
-	const [redLightState, setRedLightState] = useState("");
-	const [yellowLightState, setYellowLightState] = useState("");
-	const [greenLightState, setGreenLightState] = useState("");
+	//Lists ordered by red, yellow, and green
+	let unselectedLights = ["rounded-circle bg-danger trafficLight","rounded-circle bg-warning trafficLight","rounded-circle bg-success trafficLight"];
+	let selectedLights = [unselectedLights[0]+ " lightSelected",unselectedLights[1]+" lightSelected",unselectedLights[2]+" lightSelected"];
+	const [redLightState, setRedLightState] = useState(unselectedLights[0]);
+	const [yellowLightState, setYellowLightState] = useState(unselectedLights[1]);
+	const [greenLightState, setGreenLightState] = useState(unselectedLights[2]);
+
 
 	return (
 		<div className="container">
@@ -13,20 +17,20 @@ const TrafficLight = () => {
 				<div className="bg-black trafficLightPost">""</div>
 			</div>
 			<div className="bg-black rounded m-auto justify-content-center row align-middle trafficLightBackground">
-				<div className="rounded-circle bg-danger trafficLight {redLightState}" onClick={() => {
-					setRedLightState("lightSelected");
-					setYellowLightState("");
-					setGreenLightState("");
+				<div className={redLightState} onClick={() => {
+					setRedLightState(selectedLights[0]);
+					setYellowLightState(unselectedLights[1]);
+					setGreenLightState(unselectedLights[2]);
 				}}></div>
-				<div className="rounded-circle bg-warning trafficLight {yellowLightState}" onClick={() => {
-					setRedLightState("");
-					setYellowLightState("lightSelected");
-					setGreenLightState("");
+				<div className={yellowLightState} onClick={() => {
+					setRedLightState(unselectedLights[0]);
+					setYellowLightState(selectedLights[1]);
+					setGreenLightState(unselectedLights[2]);
 				}}></div>
-				<div className="rounded-circle bg-success trafficLight {greenLightState}" onClick={() => {
-					setRedLightState("");
-					setYellowLightState("");
-					setGreenLightState("lightSelected");
+				<div className={greenLightState} onClick={() => {
+					setRedLightState(unselectedLights[0]);
+					setYellowLightState(unselectedLights[1]);
+					setGreenLightState(selectedLights[2]);
 				}}></div>
 			</div>
 		</div>
